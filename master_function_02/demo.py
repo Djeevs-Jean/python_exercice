@@ -1,69 +1,78 @@
 import random
+LETTERS = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+NUMBERS = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25")
 
 def random_alpha(num):
     if int(num) >= 0 and int(num) <= 26:
         data = []
-        for i in "aabcdefghijklmnopqrstuvwxyz":
-            if i not in data: data.append(i)
+        d = [data.append(i) for i in LETTERS if i not in data]
         random.shuffle(data)
-        return data[0:num]
+        print('_'.join(data[0:num]))
     else: print("Entrer entrer un nombre compris la taille de l'alphabet")
 
-# print(random_alpha(27))
+# test random_alpha
+random_alpha(22)
 
-def rand_alphanumeric(num):
-    if int(num) >= 0 and int(num) <= 36:
+def random_alphanumeric(num):
+    if int(num) >= 0 and int(num) <= 26:
+        H = LETTERS + NUMBERS
         data = []
-        for i in "aabcdefghijklmnopqrstuvwxyz0123456789":
-            if i not in data: data.append(i)
+        d = [data.append(i) for i in H if i not in data]
         random.shuffle(data)
-        return data[0:num]
+        print('_'.join(data[0:num]))
     else: print("Entrer entrer un nombre compris la taille de l'alphabet")
 
-# print(rand_alphanumeric(27))
+# test random_alphanumeric
+random_alphanumeric(17)
 
-def generate_to_slug(texte):
-    if len(texte)==1: return texte
-    else: 
-        data = [i for i in texte if str(i).isalnum() or str(i) == '-' or str(i) == ' ']
-        return '-'.join(''.join(data).split())
+def slugify(word:str):
+    word = '-'.join(word.split()) 
+    word = ''.join([i for i in word if i.isalnum() or i == '-'])
+    print(word)
 
-data = "kreye yon fonksyon$ ki pou% jenere yon kòd aleyatwa ki gen n karaktè alfabetik"
-# print(generate_to_slug(data))
+# test slugify
+slugify("Kreye yon fonksyon^ ki ap dekripte$$ yon mo ki fèt ak endèks chak lèt nan alfabè a")
 
-def comma_string(texte):
-    print(','.join(texte))
+def separate_letter_with_commas(word:str)->None:
+    print(','.join(word))
 
-# data = "fonksyon"
-# comma_string(data)
+# test separate_letter_with_commas
+separate_letter_with_commas("fonksyon fonksyon")
 
-letter = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
-num: int = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
-
-
-def letter_tonum(word):
-    dict_letter_num = dict(zip(letter, num))
+def encrypt_words(word:str):
+    """function -> encrypt words."""
     word = str(word).lower()
-    r = '-'.join([str(dict_letter_num.get(i)) for i in word if i in dict_letter_num.keys()])
-    print(r)
+    dict_let_num = dict(zip(LETTERS, NUMBERS))
+    res = '-'.join([str(dict_let_num.get(i)) for i in word if i in dict_let_num.keys()])
+    print(res)
 
-letter_tonum("CHRIST IS MY LIFE")
-letter_tonum("DIEU EST VIVANT")
+# test encrypt_words
+encrypt_words("CHRIST IS MY LIFE")
+encrypt_words("DIEU EST VIVANT")
 
-def num_to_letter(word):
-    dict_num_letter = dict(zip(num, letter))
+def decrypt_words(word:str):
+    """function -> decrypt words."""
+    dict_num_letter = dict(zip(NUMBERS, LETTERS))
     word = word.split("-") 
-    r = '-'.join([str(dict_num_letter.get(int(i))) for i in word if int(i) in dict_num_letter.keys()])
+    res = ''.join([dict_num_letter.get(i) for i in word if i in dict_num_letter.keys()])
+    print(res)
 
+# test decrypt_words
+decrypt_words("25")
+decrypt_words("2-7-17-8-18-19-8-18-12-24-11-8-5-4")
+decrypt_words("3-8-4-20-4-18-19-21-8-21-0-13-19")
 
-    # if len(word) == 1: r = dict_num_letter.get(int(word))
-    # elif len(word) >= 1:
-    #     print("JESUS")
-    #     r = '-'.join([str(dict_num_letter.get(int(i))) for i in word if int(i) in dict_num_letter.keys()])
-    #     # r = [dict_num_letter.get(i) for i in word]
-    #     # r = '-'.join([dict_num_letter.get(i) for i in word if i in dict_num_letter.keys()])
-    print(r)
+def swap_values(a, b)-> tuple:
+    """function -> swap 2 values return tuple"""
+    return b, a
 
-num_to_letter("25")
-num_to_letter("2-7-17-8-18-19-8-18-12-24-11-8-5-4")
-num_to_letter("3-8-4-20-4-18-19-21-8-21-0-13-19")
+# test swap_values
+print(swap_values(4,5))
+
+def compound_names(nom:str)->str:
+    """function -> Nom Composé."""
+    name = [i[0] for i in nom.replace("-", " ").split()]
+    return "".join(name)
+    
+# test compound_names
+print(compound_names("Jean-Baptiste Jean"))
