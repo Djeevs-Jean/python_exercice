@@ -2,7 +2,7 @@ import random
 LETTERS = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 NUMBERS = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25")
 
-def random_alpha(num):
+def random_alpha(num:int):
     if int(num) >= 0 and int(num) <= 26:
         data = []
         d = [data.append(i) for i in LETTERS if i not in data]
@@ -13,7 +13,7 @@ def random_alpha(num):
 # test random_alpha
 random_alpha(22)
 
-def random_alphanumeric(num):
+def random_alphanumeric(num:int):
     if int(num) >= 0 and int(num) <= 26:
         H = LETTERS + NUMBERS
         data = []
