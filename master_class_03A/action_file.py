@@ -42,4 +42,3 @@ print(obj_action.read_file())
 obj_action.write_file("JESUS CHRIST")
 
 print(obj_action.read_file())
-# obj_action.delete_file()
