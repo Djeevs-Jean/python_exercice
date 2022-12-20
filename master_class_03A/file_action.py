@@ -3,7 +3,7 @@ from pathlib import Path
 class FileAction:
     """Class File Action."""
 
-    def __init__(self, path_file:Path) -> None:
+    def __init__(self, path_file:Path):
         self.__path_file = Path(path_file)
 
     def reader_file(self):
@@ -27,11 +27,9 @@ class FileAction:
             self.__path_file.unlink()
 
     def writer_file(self, word:str):
-        """ Write to file."""
-        # if self.__file_path.exists() and self.__file_path.is_file():
+        """ Write within a file."""
         with open(self.__path_file, 'a+') as writter:
             writter.write(word + '\n') 
-            writter.close()          
 
 # test
 chemin_fichier = Path(__file__).parent.parent.joinpath("test/text1.txt")
