@@ -10,16 +10,17 @@ class Vivant:
     def __str__(self) -> str:
         return f"Humain: Nom:{self.__nom} Pied:{self.__pied} Age:{self.__age} Main:{self.__main}"
 
-class Me(Vivant):
-    """Class Me."""
+class Student(Vivant):
+    """Class Student."""
 
-    def __init__(self, pied, main, nom, age, prenom, nationaliter) -> None:
+    def __init__(self, pied, main, nom, age, prenom, nationaliter, degree) -> None:
         self._prenom = prenom
         self._nationaliter = nationaliter
+        self._degree = degree
         super().__init__(pied, main, nom, age)
 
     def __str__(self) -> str:
-        return super().__str__()+ f" Me: Prenom {self._prenom} Nationalier {self._nationaliter}."
+        return super().__str__()+ f" Student: Prenom {self._prenom} Nationaliter:{self._nationaliter} Degree:{self._degree}."
 
 class Poule(Vivant):
     """Class Poule."""
@@ -29,14 +30,15 @@ class Poule(Vivant):
         super().__init__(pied, None, nom, age)
 
     def __str__(self) -> str:
-        return super().__str__() + f"\tPoule: de couleur {self._couleur}."
+        return super().__str__() + f" Poule: de couleur {self._couleur}."
 
+# test 
 
 obj_1 = Vivant(2, 2, "HUMAN", 23)
-obj_2 = Me(2,2,"DJeevs", 22, "Jean-Yves", "Haitien")
+obj_2 = Student(2,2,"Jhon", 22, "Doe", "Haitien", "LICENCE")
 
 print(obj_1)
 print(obj_2)
 
-obj_poule = Poule(2, "Poule Haitien", 2, "Brown")
+obj_poule = Poule(2, "Poule Haitienne", 2, "Brown")
 print(obj_poule)
