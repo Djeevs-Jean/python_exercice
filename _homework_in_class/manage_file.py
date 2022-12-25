@@ -20,7 +20,7 @@ class ManageFile:
     def prepend(self, text):
         text1 = self.read_file()
         self._write_file(text + "\n", "w")
-        self._write_file(text1, "a+")
+        self._write_file(text1, "a")
 
     def add(self, text):
         self._write_file(text + "\n", "w")
@@ -37,7 +37,6 @@ obj.read_file()
 
 # obj.append("append")
 obj.prepend("0preppend")
-
 
 # print(obj_fichier.read_file())
 obj.read_file()
